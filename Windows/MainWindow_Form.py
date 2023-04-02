@@ -1,6 +1,7 @@
 from PySide6 import QtWidgets
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtWidgets import QMainWindow, QGraphicsView
 
+from Windows.Custom.VAP_QGraphicsView import VAP_QGraphicsView
 from Windows.MainWindow_Controller import MainWindow_Controller
 from Windows.MainWindow_UI import Ui_MainWindow
 
@@ -15,8 +16,19 @@ class MainWindow_Form(QMainWindow):
         return
 
     def initilizeComponent(self):
-        self.ui.pbtn_menu_loadImage.clicked.connect(self.cntlr.pbtn_menu_loadImage_clicked)
+        # region image
+        self.ui.gv_image = VAP_QGraphicsView(self.ui.frm_image)
+        self.ui.lyt_image.addWidget(self.ui.gv_image)
+        self.ui.wgts_sceneContent.setCurrentWidget(self.ui.page_image_processing)
 
+
+        #endregion
+
+
+        # region buttons click
+        self.ui.pbtn_menu_loadImage.clicked.connect(self.cntlr.pbtn_menu_loadImage_clicked)
+        self.ui.pbtn_menu_segment.clicked.connect(self.cntlr.pbtn_menu_segment_clicked)
+        # endregion
         return
 
 

@@ -245,16 +245,71 @@ border-radius:10px;
                    </layout>
                   </widget>
                   <widget class="QWidget" name="page_image_processing">
-                   <layout class="QVBoxLayout" name="verticalLayout_3">
+                   <layout class="QVBoxLayout" name="lyt_image_processing">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
                     <item>
-                     <widget class="QFrame" name="frm_image">
+                     <widget class="QFrame" name="frm_image_processing_content">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QVBoxLayout" name="lyt_image"/>
+                      <layout class="QVBoxLayout" name="lyt_image_processing_content">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                        <widget class="QFrame" name="frm_image">
+                         <property name="minimumSize">
+                          <size>
+                           <width>550</width>
+                           <height>500</height>
+                          </size>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QVBoxLayout" name="lyt_image">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                    </layout>

@@ -18,11 +18,11 @@ class ImageOperation(object):
         dlg.setWindowTitle("Load Images")
         dlg.setOption(QFileDialog.DontUseNativeDialog, True)
         dlg.setNameFilter("Image Files (*.jpg *.png *.tif *.tiff)")
-        image = None
+        imagePath = None
 
         if dlg.exec_() == QFileDialog.Accepted:
-            image = dlg.selectedFiles()[0]
-            print("Selected file:", image)
+            imagePath = dlg.selectedFiles()[0]
+            print("Selected file:", imagePath)
 
 
-        return image
+        return imagePath

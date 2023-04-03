@@ -9,7 +9,7 @@ class MainWindow_Controller():
     def __init__(self, ui:Ui_MainWindow):
         self.ui = ui
         return
-
+    #commit
     def pbtn_menu_loadImage_clicked(self):
         imagePath= ImageOperation.LoadImages(self.ui.wgt_main)
         self.ui.gv_image.setImage(imagePath)

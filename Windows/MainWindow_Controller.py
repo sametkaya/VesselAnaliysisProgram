@@ -1,5 +1,4 @@
 from PySide6.QtGui import QImage
-
 from System import ImageProcessing
 from System.ImageOperation import ImageOperation
 from Windows.MainWindow_UI import Ui_MainWindow
@@ -9,7 +8,7 @@ class MainWindow_Controller():
     def __init__(self, ui:Ui_MainWindow):
         self.ui = ui
         return
-    #commit
+
     def pbtn_menu_loadImage_clicked(self):
         imagePath= ImageOperation.LoadImages(self.ui.wgt_main)
         self.ui.gv_image.setImage(imagePath)
@@ -24,3 +23,5 @@ class MainWindow_Controller():
             qimage = QImage(image_byte.tobytes(), image_byte.shape[1], image_byte.shape[0],  QImage.Format_Grayscale8)
             self.ui.gv_image.setImageBackground(qimage)
         return
+
+

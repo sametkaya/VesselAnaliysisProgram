@@ -11,7 +11,7 @@ class MainWindow_Form(QMainWindow):
         super(MainWindow_Form, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.cntlr = MainWindow_Controller(self.ui)
+        self.cntlr = MainWindow_Controller(self,self.ui)
         self.initilizeComponent()
         return
 
@@ -27,7 +27,10 @@ class MainWindow_Form(QMainWindow):
 
         # region buttons click
         self.ui.pbtn_menu_loadImage.clicked.connect(self.cntlr.pbtn_menu_loadImage_clicked)
+        self.ui.pbtn_menu_denoise.clicked.connect(self.cntlr.pbtn_menu_denoise_clicked)
         self.ui.pbtn_menu_segment.clicked.connect(self.cntlr.pbtn_menu_segment_clicked)
+        self.ui.pbtn_menu_skeletonize.clicked.connect(self.cntlr.pbtn_menu_skeletonize_clicked)
+        self.ui.pbtn_menu_close.clicked.connect(self.cntlr.pbtn_menu_close_clicked)
         # endregion
         return
 

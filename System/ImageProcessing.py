@@ -19,3 +19,11 @@ def Segment(image_byte):
     triangle_byte = ((image_float > triangle_tresh) * 255).astype('uint8')
     #cv2.imshow('triangle_byte', triangle_byte)
     return triangle_byte
+
+def Skeletonize():
+    triang_bool = cv2.imread('segmented_img.tiff', 0)
+    triang_bool = 0 < triang_bool
+    skeleton_bool = skimage.morphology.skeletonize(triang_bool)
+    skeleton_uint8 = (skeleton_bool * 255).astype('uint8')
+    cv2.imshow('skeleton_uint8', skeleton_uint8)
+    return skeleton_uint8

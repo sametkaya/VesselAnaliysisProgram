@@ -40,6 +40,10 @@ class MainWindow_Controller():
         return
 
     def pbtn_menu_skeletonize_clicked(self):
+        if (self.ui.gv_image.hasPhoto() and self.qimage_byte is not None):
+            image_byte=ImageProcessing.Skeletonize()
+            qimage = QImage(image_byte.tobytes(), image_byte.shape[1], image_byte.shape[0],  QImage.Format_Grayscale8)
+            self.ui.gv_image.setImageBackground(qimage)
         return
 
     def pbtn_menu_analyse_clicked(self):

@@ -149,6 +149,19 @@ border-radius:10px;
                  </widget>
                 </item>
                 <item>
+                 <widget class="QPushButton" name="pbtn_menu_denoise">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Denoise</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QPushButton" name="pbtn_menu_segment">
                   <property name="minimumSize">
                    <size>

@@ -17,8 +17,8 @@ class MainWindow_Form(QMainWindow):
 
     def initilizeComponent(self):
         # region image
-        self.ui.gv_image = VAP_QGraphicsView(self.ui.frm_image)
-        self.ui.lyt_image.addWidget(self.ui.gv_image)
+        self.ui.gv_image = VAP_QGraphicsView(self.ui.frm_image_processing_content)
+        self.ui.lyt_image_processing_content.addWidget(self.ui.gv_image)
         self.ui.wgts_sceneContent.setCurrentWidget(self.ui.page_image_processing)
 
 
@@ -30,6 +30,8 @@ class MainWindow_Form(QMainWindow):
         self.ui.pbtn_menu_denoise.clicked.connect(self.cntlr.pbtn_menu_denoise_clicked)
         self.ui.pbtn_menu_segment.clicked.connect(self.cntlr.pbtn_menu_segment_clicked)
         self.ui.pbtn_menu_skeletonize.clicked.connect(self.cntlr.pbtn_menu_skeletonize_clicked)
+        self.ui.pbtn_menu_analyse.clicked.connect(self.cntlr.pbtn_menu_analyse_clicked)
+        self.ui.pbtn_menu_report.clicked.connect(self.cntlr.pbtn_menu_report_clicked)
         self.ui.pbtn_menu_close.clicked.connect(self.cntlr.pbtn_menu_close_clicked)
         # endregion
         return

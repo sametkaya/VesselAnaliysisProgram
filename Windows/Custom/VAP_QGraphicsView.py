@@ -12,6 +12,10 @@ class VAP_QGraphicsView(QtWidgets.QGraphicsView):
 
     def __init__(self, parent):
         super(VAP_QGraphicsView, self).__init__(parent)
+        self.setAutoFillBackground(True)
+        pal = QPalette()
+        pal.setColor(QPalette.Window, "#3a3a3a")
+        self.setPalette(pal)
         self.image = QImage()
         self.imagePath = None
         self.zoom = 0
@@ -19,6 +23,8 @@ class VAP_QGraphicsView(QtWidgets.QGraphicsView):
         self.scane = QtWidgets.QGraphicsScene(self)
         self.photo = QtWidgets.QGraphicsPixmapItem()
         self.scane.addItem(self.photo)
+        self.tips=[]
+
         #self.scane.setForegroundBrush(QColor(255, 255, 255, 127));
         #self.size(parent.size())
         self.setScene(self.scane)
@@ -26,7 +32,7 @@ class VAP_QGraphicsView(QtWidgets.QGraphicsView):
         self.setResizeAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-        self.setBackgroundBrush(QtGui.QBrush(QtGui.QColor(255, 255, 255)))
+        self.setBackgroundBrush(QtGui.QBrush(QtGui.QColor("#3a3a3a")))
         #self.setFrameShape(QtWidgets.QFrame.NoFrame)
 
     def hasPhoto(self):
@@ -53,7 +59,7 @@ class VAP_QGraphicsView(QtWidgets.QGraphicsView):
         self.setImageBackground(self.image)
 
     def setImageBackground(self, qimage=None):
-        self.image=qimage
+        self.image = qimage
         pixmap = QPixmap.fromImage(self.image)
         self.zoom = 0
         if pixmap and not pixmap.isNull():
@@ -64,6 +70,7 @@ class VAP_QGraphicsView(QtWidgets.QGraphicsView):
             self.isEmpty = True
             self.setDragMode(QtWidgets.QGraphicsView.NoDrag)
             self.photo.setPixmap(QtGui.QPixmap())
+
         self.fitInView()
 
     def wheelEvent(self, event):
@@ -80,6 +87,7 @@ class VAP_QGraphicsView(QtWidgets.QGraphicsView):
                 self.fitInView()
             else:
                 self.zoom = 0
+                self.fitInView()
 
     def toggleDragMode(self):
         if self.dragMode() == QtWidgets.QGraphicsView.ScrollHandDrag:

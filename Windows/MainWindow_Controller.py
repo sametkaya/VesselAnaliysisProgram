@@ -90,8 +90,9 @@ class MainWindow_Controller():
 
     def chbx_analyse_showBranchPoints_clicked(self):
         isVisible= self.ui.chbx_analyse_showBranchPoints.isChecked()
-        showMarker = self.ui.chbx_analyse_showBranchPointCenter.isChecked()
-        showCenter = self.ui.chbx_analyse_showBranchPointMarker.isChecked()
+        showMarker = self.ui.chbx_analyse_showBranchPointMarker.isChecked()
+        showCenter = self.ui.chbx_analyse_showBranchPointCenter.isChecked()
+
 
         self.ui.gv_image.Update_Branch_Points(isVisible,showCenter,showMarker)
 

@@ -4,7 +4,7 @@ import os
 from PySide6 import QtWidgets
 from PySide6.QtCore import QDir, QFileInfo
 from PySide6.QtWidgets import QFileDialog, QWidget
-
+import csv
 from Datas.Data import Data
 
 
@@ -49,13 +49,25 @@ class FileSystem(object):
             open(FileSystem.projectConfigFilePath, "w")
 
     @staticmethod
-    def SaveProject():
-        jsonDict={}
-        jsonDict[""]
-        batImageDict = [bi.toDict() for bi in Data.batImageList]
-        data = {'Bat Images': batImageDict}
-        json_string = json.dumps(data)
+    def SaveProject(vimage):
 
+        #jsonDict={}
+        #jsonDict[""]
+        #batImageDict = [bi.toDict() for bi in Data.batImageList]
+        #data = {'Bat Images': batImageDict}
+        #json_string = json.dumps(data)
+        os.makedirs("folder_path")
+
+        os.path.join(folder_path, "my_file.csv")
+        csv_file = open(vimage.image_raw_name.csv, 'w', newline='')
+        csv_writer= csv.writer(csv_file)
+        field = ["vaf(%)", "branch_points_count", "tip_point_count","vein_count","total_vein_lenght",]
+        csv_writer.writerow(field)
+
+        row = [vimage.vascularAreaFraction, len(vimage.branchPoints), len(vimage.tipPoints), len(vimage.vap_veins), vimage.total_vein_length]
+        csv_writer.writerow(row)
+
+        csv_file.close()
         return
 
     @staticmethod

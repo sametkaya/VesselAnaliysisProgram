@@ -1,8 +1,9 @@
 from PySide6 import QtWidgets
 from PySide6.QtGui import QImage, QPixmap, Qt
 
-from GraphicItems.VAP_Point import VAP_Point
-from GraphicItems.VAP_Vein import VAP_Vein
+from GraphicItems.VAP_Image import VAP_Image
+from GraphicItems.VAP_Point_Graph import VAP_Point_Graph
+from GraphicItems.VAP_Vein_Graph import VAP_Vein_Graph
 
 
 class VAP_Scene(QtWidgets.QGraphicsScene):
@@ -10,50 +11,55 @@ class VAP_Scene(QtWidgets.QGraphicsScene):
 
     def __init__(self, parent):
         super(VAP_Scene, self).__init__(parent)
-        self.image_path=""
-        self.photo = QtWidgets.QGraphicsPixmapItem()
-        self.addItem(self.photo)
-        self.qimage_byte = None
-        self.is_empty = True
-        self.veins = []
-        self.branchPoints = []
-        self.tipPoints = []
+        self.vap_image = VAP_Image()
+        self.addItem(self.vap_image.image_pixmap)
+    def SetImage(self, image_raw_path, image_raw=None, image_byte8=None):
+        self.vap_image.SetImage(image_raw_path, image_raw, image_byte8)
+        self.is_empty = False
+    def SetProcessImage(self, image_byte8):
+        self.vap_image.SetProcessImage(image_byte8)
 
-    def SetImage(self, imagePath):
-        self.image = QImage(imagePath)
-        self.imagePath = imagePath
-        pixmap = QPixmap.fromImage(self.image)
-        self.photo.setPixmap(pixmap)
+    def HasImage(self):
+        return not self.vap_image.HasImage()
+    def AddVeins(self, veins):
+        for vap_vein in veins:
+            vap_vein_graph = VAP_Vein_Graph(self.vap_image.image_pixmap, vap_vein)
+            self.addItem(vap_vein_graph)
+            self.vap_image.AddVein(vap_vein_graph)
+        self.vap_image.average_vein_length = self.vap_image.total_vein_length / (len(self.vap_image.vap_veins) + 1)
 
-        self.is_empty= False
+    def AddBranchPoints(self, vap_point_branch_list):
+        for vap_point in vap_point_branch_list:
+            vap_point_graph = VAP_Point_Graph(self.vap_image.image_pixmap, vap_point, color=Qt.red)
+            self.addItem(vap_point_graph)
+            self.vap_image.AddBranchPoint(vap_point_graph)
+    def AddTipPoints(self, vap_point_tip_list):
+        for vap_point in vap_point_tip_list:
+            vap_point_graph = VAP_Point_Graph(self.vap_image.image_pixmap, vap_point, color=Qt.green)
+            self.addItem(vap_point_graph)
+            self.vap_image.AddTipPoint(vap_point_graph)
+    def Update_Branch_Points(self, isVisible=True, showCenter=True, showMarker=True):
+        for vpoint in self.vap_image.branchPoints:
+            vpoint.setVisible(isVisible)
+            vpoint.showMarker = showMarker
+            vpoint.showCenter = showCenter
+            # vpoint.updateIt()
+        #self.update()
+    def Update_Tip_Points(self, isVisible=True, showCenter=True, showMarker=True):
+        for vpoint in self.vap_image.tipPoints:
+            vpoint.setVisible(isVisible)
+            vpoint.showMarker = showMarker
+            vpoint.showCenter = showCenter
+            # vpoint.updateIt()
+        self.update()
+    def Update_Branch_Paths(self, isVisible=True, showId=True, showLenght=True):
+        for vap_vein_graph in self.vap_image.vap_vein_graphs:
+            vap_vein_graph.setVisible(isVisible)
+            vap_vein_graph.showId = showId
+            vap_vein_graph.showLenght = showLenght
+            vap_vein_graph.showInfo = vap_vein_graph.showId or vap_vein_graph.showLenght
+        self.update()
 
-    def AddVeins(self, branch_paths):
-        for path in branch_paths:
-            vvein = VAP_Vein(self.photo, path[5], path[1], path[4], path[0])
-            self.addItem(vvein)
-            self.veins.append(vvein)
-
-    def AddBranchPoints(self, branch_points_dict):
-        for point in branch_points_dict:
-            vpoint = VAP_Point(self.photo, branch_points_dict[point][0][1], branch_points_dict[point][0][0], color=Qt.red)
-            self.addItem(vpoint)
-            self.branchPoints.append(vpoint)
-
-    def AddTipPoints(self, tip_points_dict):
-        for point in tip_points_dict:
-            vpoint = VAP_Point(self.photo, tip_points_dict[point][1], tip_points_dict[point][0], color=Qt.green)
-            self.addItem(vpoint)
-            self.tipPoints.append(vpoint)
-
-    def SetVeinsProperties(self, showPath = False, showId = False, showLenght = False, showInfo = False, lenghtDotDigit = 3):
-
-        VAP_Vein.showPath = showPath
-        VAP_Vein.showId = showId
-        VAP_Vein.showLenght = showLenght
-        VAP_Vein.showInfo = showInfo
-        VAP_Vein.lenghtDotDigit = lenghtDotDigit
-        for vein in self.veins:
-            vein.updateIt()
 
 
 

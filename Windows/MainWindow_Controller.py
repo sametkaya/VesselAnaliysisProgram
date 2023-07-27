@@ -16,14 +16,26 @@ class MainWindow_Controller():
     def __init__(self, mainWindow:QMainWindow ,ui:Ui_MainWindow):
         self.mainWindow=mainWindow
         self.ui = ui
-
+        self.pdf_document=None
+        self.page_index=0
         return
 
+    def radioBtn_imgPrcssng_clicked(self):
+        self.ui.stack_wdgt_left_menu_btns.setCurrentIndex(0)
+        return
+
+    def radioBtn_deepLearning_clicked(self):
+        self.ui.stack_wdgt_left_menu_btns.setCurrentIndex(1)
+        return
+        
     def pbtn_menu_loadImage_clicked(self):
         imagePath= ImageOperation.LoadImages(self.ui.wgt_main)
         image_raw, image_gray = ImageProcessing.GetImageFormats(imagePath)
         self.ui.gv_image.scene.SetImage(imagePath, image_raw, image_gray)
 
+        self.ui.gv_image.scene.Update_Branch_Points(False, False, False)
+        self.ui.gv_image.scene.Update_Tip_Points(False, False, False)
+        self.ui.gv_image.scene.Update_Branch_Paths(False, False, False)
         #ipad=r"C:\Users\skaya\PycharmProjects\VesselAnaliysisProgram\Images\iskelet.png"
         #image_raw, image_byte8 = GetImageFormats(ipad)
         #self.ui.gv_image.scene.SetImage(ipad, image_raw, image_byte8)
@@ -107,9 +119,8 @@ class MainWindow_Controller():
 
 
     def pbtn_menu_report_clicked(self):
-
-        ImageOperation.SaveInfos(self.ui.gv_image.scene.vap_image)
-
+        MySecondWindow = SecondWindow_Form(self)
+        MySecondWindow.show()
 
         return
 
@@ -119,3 +130,42 @@ class MainWindow_Controller():
         if confirm == QMessageBox.Yes:
             self.mainWindow.close()
         return
+
+    def load_pdf(self,file_name):
+        if file_name:
+            self.pdf_document = fitz.open(file_name)
+            self.show_page()
+
+    def show_page(self):
+        if not self.pdf_document:
+            return
+
+        page = self.pdf_document.load_page(self.page_index)
+        image = page.get_pixmap()
+        qt_image = QImage(image.samples, image.width, image.height, image.stride, QImage.Format_RGB888)
+        pixmap = QPixmap.fromImage(qt_image)
+
+        # Calculate the scale factor to fit the page to the view
+        scale_factor = min(self.ui.pdf_view.width() / pixmap.width(), self.ui.pdf_view.height() / pixmap.height()) * 1.5
+        scaled_pixmap = pixmap.scaled(pixmap.width() * scale_factor, pixmap.height() * scale_factor, Qt.KeepAspectRatio)
+
+        # Calculate the center position to display the page in the view
+        center_x = (self.ui.pdf_view.width() - scaled_pixmap.width()) / 2
+        center_y = (self.ui.pdf_view.height() - scaled_pixmap.height()) / 2
+
+        top_left_x = center_x if center_x > 0 else 0
+        top_left_y = center_y if center_y > 0 else 0
+
+        self.ui.scene.clear()
+        self.ui.scene.addPixmap(scaled_pixmap)
+        self.ui.pdf_view.setSceneRect(top_left_x, top_left_y, scaled_pixmap.width(), scaled_pixmap.height())
+
+    def previous_page(self):
+        if self.page_index > 0:
+            self.page_index -= 1
+            self.show_page()
+
+    def next_page(self):
+        if self.pdf_document and self.page_index < len(self.pdf_document) - 1:
+            self.page_index += 1
+            self.show_page()

@@ -1,14 +1,13 @@
-from PySide6.QtCore import QPoint
-from PySide6.QtGui import QImage, Qt
+import subprocess
+
+import fitz
+from PySide6.QtGui import QImage, Qt, QPixmap
 from PySide6.QtWidgets import QMessageBox, QMainWindow
 
-from GraphicItems.CustomRectItem import CustomRectItem
-from GraphicItems.VAP_Point_Graph import VAP_Point_Graph
-from GraphicItems.VAP_Vein_Graph import VAP_Vein_Graph
+
 from System import ImageProcessing
 from System.ImageOperation import ImageOperation
-from System.ImageProcessing import GetImageFormats
-from Windows.Custom.VAP_QGraphicsView import VAP_QGraphicsView
+
 from Windows.MainWindow_UI import Ui_MainWindow
 
 
@@ -20,13 +19,6 @@ class MainWindow_Controller():
         self.page_index=0
         return
 
-    def radioBtn_imgPrcssng_clicked(self):
-        self.ui.stack_wdgt_left_menu_btns.setCurrentIndex(0)
-        return
-
-    def radioBtn_deepLearning_clicked(self):
-        self.ui.stack_wdgt_left_menu_btns.setCurrentIndex(1)
-        return
         
     def pbtn_menu_loadImage_clicked(self):
         imagePath= ImageOperation.LoadImages(self.ui.wgt_main)
@@ -115,13 +107,41 @@ class MainWindow_Controller():
         showLenght = self.ui.chbx_analyse_showBranchPathLenght.isChecked()
 
         self.ui.gv_image.scene.Update_Branch_Paths(isVisible, showId, showLenght)
-
-
+        
 
     def pbtn_menu_report_clicked(self):
-        MySecondWindow = SecondWindow_Form(self)
-        MySecondWindow.show()
+        self.ui.wgts_sceneContent.setCurrentIndex(1)
+        return
 
+    def pbtn_create_pdf_clicked(self):
+        branchPointsCount = self.ui.checkBox_report_bpCount.isChecked()
+        tipPointsCount = self.ui.checkBox_report_tpCount.isChecked()
+        veinCount = self.ui.checkBox_report_vCount.isChecked()
+        veinStartEndPoints = self.ui.checkBox_report_veinSEP.isChecked()
+        totalVeinLength = self.ui.checkBox_report_tvLength.isChecked()
+        averageVeinLength = self.ui.checkBox_report_avLength.isChecked()
+        eachVeinLength = self.ui.checkBox_report_evLength.isChecked()
+        veinStartEndPointsType = self.ui.checkBox_report_vSEPType.isChecked()
+
+        informationDict = {}
+        informationDict["vaf(%)"] = True
+        informationDict["id"] = True
+        informationDict["branch points count"] = branchPointsCount
+        informationDict["tip point count"] = tipPointsCount
+        informationDict["vein count"] = veinCount
+        informationDict["total vein length"] = totalVeinLength
+        informationDict["average vein length"] = averageVeinLength
+        informationDict["p1.x, p1.y"] = veinStartEndPoints
+        informationDict["p2.x, p2.y"] = veinStartEndPoints
+        informationDict["length"] = eachVeinLength
+        informationDict["p1_type"] = veinStartEndPointsType
+        informationDict["p2_type"] = veinStartEndPointsType
+
+        file_path = ImageOperation.SaveInfos(self.ui.gv_image.scene.vap_image, informationDict)
+
+        subprocess.Popen([file_path], shell=True)
+        self.ui.wgts_sceneContent.setCurrentWidget(self.ui.page_report)
+        self.load_pdf(file_path)
         return
 
     def pbtn_menu_close_clicked(self):

@@ -17,15 +17,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QGraphicsView,
     QGridLayout, QGroupBox, QHBoxLayout, QMainWindow,
-    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QVBoxLayout, QWidget)
-
+    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
+    QVBoxLayout, QWidget)
+import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(777, 798)
+        MainWindow.resize(760, 768)
         MainWindow.setToolButtonStyle(Qt.ToolButtonIconOnly)
         MainWindow.setAnimated(False)
         self.wgt_main = QWidget(MainWindow)
@@ -67,8 +67,6 @@ class Ui_MainWindow(object):
 "\n"
 "#frm_left_menu_buttons QPushButton:hover{\n"
 " background-color: #FF8303;\n"
-"\n"
-"\n"
 "}")
         self.lyt_middle_content = QHBoxLayout(self.frm_middle_content)
         self.lyt_middle_content.setSpacing(15)
@@ -87,16 +85,6 @@ class Ui_MainWindow(object):
         self.lyt_left_menu_buttons = QVBoxLayout(self.frm_left_menu_buttons)
         self.lyt_left_menu_buttons.setObjectName(u"lyt_left_menu_buttons")
         self.lyt_left_menu_buttons.setContentsMargins(0, 0, 0, 0)
-        self.radioBtn_imgPrcssng = QRadioButton(self.frm_left_menu_buttons)
-        self.radioBtn_imgPrcssng.setObjectName(u"radioBtn_imgPrcssng")
-
-        self.lyt_left_menu_buttons.addWidget(self.radioBtn_imgPrcssng)
-
-        self.radioBtn_deepLearning = QRadioButton(self.frm_left_menu_buttons)
-        self.radioBtn_deepLearning.setObjectName(u"radioBtn_deepLearning")
-
-        self.lyt_left_menu_buttons.addWidget(self.radioBtn_deepLearning)
-
         self.pbtn_menu_loadImage = QPushButton(self.frm_left_menu_buttons)
         self.pbtn_menu_loadImage.setObjectName(u"pbtn_menu_loadImage")
         self.pbtn_menu_loadImage.setMinimumSize(QSize(60, 40))
@@ -104,59 +92,23 @@ class Ui_MainWindow(object):
 
         self.lyt_left_menu_buttons.addWidget(self.pbtn_menu_loadImage)
 
-        self.frm_left_menu_stack_style = QFrame(self.frm_left_menu_buttons)
-        self.frm_left_menu_stack_style.setObjectName(u"frm_left_menu_stack_style")
-        self.frm_left_menu_stack_style.setFrameShape(QFrame.Box)
-        self.frm_left_menu_stack_style.setFrameShadow(QFrame.Plain)
-        self.verticalLayout_3 = QVBoxLayout(self.frm_left_menu_stack_style)
-        self.verticalLayout_3.setSpacing(0)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.stack_wdgt_left_menu_btns = QStackedWidget(self.frm_left_menu_stack_style)
-        self.stack_wdgt_left_menu_btns.setObjectName(u"stack_wdgt_left_menu_btns")
-        self.stack_wdgt_left_menu_btns.setMinimumSize(QSize(0, 160))
-        self.page1_image_processing_btns = QWidget()
-        self.page1_image_processing_btns.setObjectName(u"page1_image_processing_btns")
-        self.frm_image_processing_btns = QFrame(self.page1_image_processing_btns)
-        self.frm_image_processing_btns.setObjectName(u"frm_image_processing_btns")
-        self.frm_image_processing_btns.setGeometry(QRect(0, -1, 121, 161))
-        self.verticalLayout_5 = QVBoxLayout(self.frm_image_processing_btns)
-        self.verticalLayout_5.setSpacing(6)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 1)
-        self.pbtn_menu_denoise = QPushButton(self.frm_image_processing_btns)
+        self.pbtn_menu_denoise = QPushButton(self.frm_left_menu_buttons)
         self.pbtn_menu_denoise.setObjectName(u"pbtn_menu_denoise")
         self.pbtn_menu_denoise.setMinimumSize(QSize(60, 40))
 
-        self.verticalLayout_5.addWidget(self.pbtn_menu_denoise)
+        self.lyt_left_menu_buttons.addWidget(self.pbtn_menu_denoise)
 
-        self.pbtn_menu_segment = QPushButton(self.frm_image_processing_btns)
+        self.pbtn_menu_segment = QPushButton(self.frm_left_menu_buttons)
         self.pbtn_menu_segment.setObjectName(u"pbtn_menu_segment")
         self.pbtn_menu_segment.setMinimumSize(QSize(60, 40))
 
-        self.verticalLayout_5.addWidget(self.pbtn_menu_segment)
+        self.lyt_left_menu_buttons.addWidget(self.pbtn_menu_segment)
 
-        self.pbtn_menu_skeletonize = QPushButton(self.frm_image_processing_btns)
+        self.pbtn_menu_skeletonize = QPushButton(self.frm_left_menu_buttons)
         self.pbtn_menu_skeletonize.setObjectName(u"pbtn_menu_skeletonize")
         self.pbtn_menu_skeletonize.setMinimumSize(QSize(60, 40))
 
-        self.verticalLayout_5.addWidget(self.pbtn_menu_skeletonize)
-
-        self.stack_wdgt_left_menu_btns.addWidget(self.page1_image_processing_btns)
-        self.page2_deep_learning_btns = QWidget()
-        self.page2_deep_learning_btns.setObjectName(u"page2_deep_learning_btns")
-        self.verticalLayoutWidget = QWidget(self.page2_deep_learning_btns)
-        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(0, 0, 121, 161))
-        self.verticalLayout_6 = QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.stack_wdgt_left_menu_btns.addWidget(self.page2_deep_learning_btns)
-
-        self.verticalLayout_3.addWidget(self.stack_wdgt_left_menu_btns)
-
-
-        self.lyt_left_menu_buttons.addWidget(self.frm_left_menu_stack_style)
+        self.lyt_left_menu_buttons.addWidget(self.pbtn_menu_skeletonize)
 
         self.pbtn_menu_analyse = QPushButton(self.frm_left_menu_buttons)
         self.pbtn_menu_analyse.setObjectName(u"pbtn_menu_analyse")
@@ -292,12 +244,17 @@ class Ui_MainWindow(object):
         self.wgts_sceneContent.setSizePolicy(sizePolicy)
         self.page_report = QWidget()
         self.page_report.setObjectName(u"page_report")
+        self.page_report.setStyleSheet(u"#horizontalLayout QPushButton:hover{\n"
+" background-color: #282828;\n"
+"}")
         self.verticalLayout_4 = QVBoxLayout(self.page_report)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.pbtn_prev_page = QPushButton(self.page_report)
         self.pbtn_prev_page.setObjectName(u"pbtn_prev_page")
+        self.pbtn_prev_page.setStyleSheet(u"background-color: #282828;\n"
+"color:white;")
 
         self.horizontalLayout.addWidget(self.pbtn_prev_page)
 
@@ -307,6 +264,9 @@ class Ui_MainWindow(object):
 
         self.pbtn_next_page = QPushButton(self.page_report)
         self.pbtn_next_page.setObjectName(u"pbtn_next_page")
+        self.pbtn_next_page.setStyleSheet(u"background-color: #282828;\n"
+"color:white;\n"
+"")
 
         self.horizontalLayout.addWidget(self.pbtn_next_page)
 
@@ -333,6 +293,123 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.page_report_lwdgt)
 
         self.wgts_sceneContent.addWidget(self.page_report)
+        self.page_select_report_options = QWidget()
+        self.page_select_report_options.setObjectName(u"page_select_report_options")
+        self.verticalLayout = QVBoxLayout(self.page_select_report_options)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.wdgt_select_report_options = QWidget(self.page_select_report_options)
+        self.wdgt_select_report_options.setObjectName(u"wdgt_select_report_options")
+        self.gridLayout_2 = QGridLayout(self.wdgt_select_report_options)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.grpbx_report_options = QGroupBox(self.wdgt_select_report_options)
+        self.grpbx_report_options.setObjectName(u"grpbx_report_options")
+        self.grpbx_report_options.setMinimumSize(QSize(0, 400))
+        self.grpbx_report_options.setMaximumSize(QSize(16777215, 400))
+        self.verticalLayout_6 = QVBoxLayout(self.grpbx_report_options)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.wdgt_checkBoxes = QWidget(self.grpbx_report_options)
+        self.wdgt_checkBoxes.setObjectName(u"wdgt_checkBoxes")
+        self.horizontalLayout_2 = QHBoxLayout(self.wdgt_checkBoxes)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.wdgt_options_right = QWidget(self.wdgt_checkBoxes)
+        self.wdgt_options_right.setObjectName(u"wdgt_options_right")
+        self.verticalLayout_5 = QVBoxLayout(self.wdgt_options_right)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.checkBox_report_veinSEP = QCheckBox(self.wdgt_options_right)
+        self.checkBox_report_veinSEP.setObjectName(u"checkBox_report_veinSEP")
+        self.checkBox_report_veinSEP.setChecked(True)
+
+        self.verticalLayout_5.addWidget(self.checkBox_report_veinSEP)
+
+        self.checkBox_report_vSEPType = QCheckBox(self.wdgt_options_right)
+        self.checkBox_report_vSEPType.setObjectName(u"checkBox_report_vSEPType")
+        self.checkBox_report_vSEPType.setChecked(True)
+
+        self.verticalLayout_5.addWidget(self.checkBox_report_vSEPType)
+
+        self.checkBox_report_vCount = QCheckBox(self.wdgt_options_right)
+        self.checkBox_report_vCount.setObjectName(u"checkBox_report_vCount")
+        self.checkBox_report_vCount.setChecked(True)
+
+        self.verticalLayout_5.addWidget(self.checkBox_report_vCount)
+
+        self.checkBox_report_tvLength = QCheckBox(self.wdgt_options_right)
+        self.checkBox_report_tvLength.setObjectName(u"checkBox_report_tvLength")
+        self.checkBox_report_tvLength.setChecked(True)
+
+        self.verticalLayout_5.addWidget(self.checkBox_report_tvLength)
+
+
+        self.horizontalLayout_2.addWidget(self.wdgt_options_right)
+
+        self.wdgt_options_left = QWidget(self.wdgt_checkBoxes)
+        self.wdgt_options_left.setObjectName(u"wdgt_options_left")
+        self.verticalLayout_3 = QVBoxLayout(self.wdgt_options_left)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.checkBox_report_tpCount = QCheckBox(self.wdgt_options_left)
+        self.checkBox_report_tpCount.setObjectName(u"checkBox_report_tpCount")
+        self.checkBox_report_tpCount.setChecked(True)
+
+        self.verticalLayout_3.addWidget(self.checkBox_report_tpCount)
+
+        self.checkBox_report_evLength = QCheckBox(self.wdgt_options_left)
+        self.checkBox_report_evLength.setObjectName(u"checkBox_report_evLength")
+        self.checkBox_report_evLength.setChecked(True)
+
+        self.verticalLayout_3.addWidget(self.checkBox_report_evLength)
+
+        self.checkBox_report_bpCount = QCheckBox(self.wdgt_options_left)
+        self.checkBox_report_bpCount.setObjectName(u"checkBox_report_bpCount")
+        self.checkBox_report_bpCount.setChecked(True)
+
+        self.verticalLayout_3.addWidget(self.checkBox_report_bpCount)
+
+        self.checkBox_report_avLength = QCheckBox(self.wdgt_options_left)
+        self.checkBox_report_avLength.setObjectName(u"checkBox_report_avLength")
+        self.checkBox_report_avLength.setChecked(True)
+
+        self.verticalLayout_3.addWidget(self.checkBox_report_avLength)
+
+
+        self.horizontalLayout_2.addWidget(self.wdgt_options_left)
+
+
+        self.verticalLayout_6.addWidget(self.wdgt_checkBoxes)
+
+        self.wdgt_btn = QWidget(self.grpbx_report_options)
+        self.wdgt_btn.setObjectName(u"wdgt_btn")
+        self.wdgt_btn.setMaximumSize(QSize(16777215, 60))
+        self.horizontalLayout_3 = QHBoxLayout(self.wdgt_btn)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.pbtn_create_pdf = QPushButton(self.wdgt_btn)
+        self.pbtn_create_pdf.setObjectName(u"pbtn_create_pdf")
+        self.pbtn_create_pdf.setMinimumSize(QSize(60, 40))
+        self.pbtn_create_pdf.setMaximumSize(QSize(200, 40))
+        self.pbtn_create_pdf.setStyleSheet(u" QPushButton{\n"
+" background-color: #FE6E00;\n"
+" border-style: solid;\n"
+" border-width:1px;\n"
+" border-radius:20px;\n"
+" border-color: white;\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: #FF8303;\n"
+"}")
+
+        self.horizontalLayout_3.addWidget(self.pbtn_create_pdf)
+
+
+        self.verticalLayout_6.addWidget(self.wdgt_btn)
+
+
+        self.gridLayout_2.addWidget(self.grpbx_report_options, 0, 0, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.wdgt_select_report_options)
+
+        self.wgts_sceneContent.addWidget(self.page_select_report_options)
         self.page_image_processing = QWidget()
         self.page_image_processing.setObjectName(u"page_image_processing")
         sizePolicy.setHeightForWidth(self.page_image_processing.sizePolicy().hasHeightForWidth())
@@ -371,17 +448,14 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stack_wdgt_left_menu_btns.setCurrentIndex(0)
-        self.wgts_sceneContent.setCurrentIndex(0)
+        self.wgts_sceneContent.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Brain Vasculyzer", None))
-        self.radioBtn_imgPrcssng.setText(QCoreApplication.translate("MainWindow", u"Image Processing", None))
-        self.radioBtn_deepLearning.setText(QCoreApplication.translate("MainWindow", u"Deep Learning", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Brain Vasculyzer - Image Processing", None))
         self.pbtn_menu_loadImage.setText(QCoreApplication.translate("MainWindow", u"Load Image", None))
         self.pbtn_menu_denoise.setText(QCoreApplication.translate("MainWindow", u"Denoise", None))
         self.pbtn_menu_segment.setText(QCoreApplication.translate("MainWindow", u"Segment", None))
@@ -403,5 +477,15 @@ class Ui_MainWindow(object):
         self.pbtn_menu_close.setText(QCoreApplication.translate("MainWindow", u"Close", None))
         self.pbtn_prev_page.setText(QCoreApplication.translate("MainWindow", u"Previous", None))
         self.pbtn_next_page.setText(QCoreApplication.translate("MainWindow", u"Next", None))
+        self.grpbx_report_options.setTitle(QCoreApplication.translate("MainWindow", u"Options", None))
+        self.checkBox_report_veinSEP.setText(QCoreApplication.translate("MainWindow", u"vein start/end points", None))
+        self.checkBox_report_vSEPType.setText(QCoreApplication.translate("MainWindow", u"vein start/end point types", None))
+        self.checkBox_report_vCount.setText(QCoreApplication.translate("MainWindow", u"vein count", None))
+        self.checkBox_report_tvLength.setText(QCoreApplication.translate("MainWindow", u"total vein length", None))
+        self.checkBox_report_tpCount.setText(QCoreApplication.translate("MainWindow", u"tip point count", None))
+        self.checkBox_report_evLength.setText(QCoreApplication.translate("MainWindow", u"length of each vein", None))
+        self.checkBox_report_bpCount.setText(QCoreApplication.translate("MainWindow", u"branch points count", None))
+        self.checkBox_report_avLength.setText(QCoreApplication.translate("MainWindow", u"average vein length", None))
+        self.pbtn_create_pdf.setText(QCoreApplication.translate("MainWindow", u"Create PDF", None))
     # retranslateUi
 

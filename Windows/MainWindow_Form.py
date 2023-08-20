@@ -1,6 +1,6 @@
 from PySide6 import QtWidgets
 from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QMainWindow, QGraphicsView
+from PySide6.QtWidgets import QMainWindow, QGraphicsView, QGraphicsScene
 
 from Windows.Custom.VAP_QGraphicsView import VAP_QGraphicsView
 from Windows.MainWindow_Controller import MainWindow_Controller
@@ -15,7 +15,6 @@ class MainWindow_Form(QMainWindow):
         self.cntlr = MainWindow_Controller(self,self.ui)
         self.initilizeComponent()
         appIcon = QIcon("../Resources/app_icon.png")
-        self.ui.radioBtn_imgPrcssng.setChecked(True)
         self.setWindowIcon(appIcon)
         return
 
@@ -51,13 +50,12 @@ class MainWindow_Form(QMainWindow):
         self.ui.chbx_analyse_showBranchPaths.clicked.connect(self.cntlr.chbx_analyse_showBranchPaths_clicked)
         self.ui.chbx_analyse_showBranchPathLenght.clicked.connect(self.cntlr.chbx_analyse_showBranchPaths_clicked)
         self.ui.chbx_analyse_showBranchPathId.clicked.connect(self.cntlr.chbx_analyse_showBranchPaths_clicked)
-
-        self.ui.radioBtn_imgPrcssng.toggled.connect(self.cntlr.start_menu_radio_btn_clicked)
-        self.ui.radioBtn_imgPrcssng.clicked.connect(self.cntlr.radioBtn_imgPrcssng_clicked)
+   
         
         self.ui.scene = QGraphicsScene(self)
         self.ui.pdf_view.setScene(self.ui.scene)
 
+        self.ui.pbtn_create_pdf.clicked.connect(self.cntlr.pbtn_create_pdf_clicked)
         self.ui.pbtn_next_page.clicked.connect(self.cntlr.next_page)
         self.ui.pbtn_prev_page.clicked.connect(self.cntlr.previous_page)
 

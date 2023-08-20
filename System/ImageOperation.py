@@ -119,7 +119,8 @@ class ImageOperation(object):
 
             csv_file.close()
 
-            # Creating PDF 
+            # Creating PDF
+            pdf_file_path = os.path.join(report_folder, image_report_name + ".pdf")
             pdf = FPDF()
 
             # Adding title to the PDF

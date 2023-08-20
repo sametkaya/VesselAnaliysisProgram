@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>777</width>
-    <height>798</height>
+    <width>760</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Brain Vasculyzer</string>
+   <string>Brain Vasculyzer - Image Processing</string>
   </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonIconOnly</enum>
@@ -82,8 +82,6 @@ border-radius:10px;
 
 #frm_left_menu_buttons QPushButton:hover{
  background-color: #FF8303;
-
-
 }</string>
          </property>
          <layout class="QHBoxLayout" name="lyt_middle_content">
@@ -139,20 +137,6 @@ border-radius:10px;
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QRadioButton" name="radioBtn_imgPrcssng">
-                  <property name="text">
-                   <string>Image Processing</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QRadioButton" name="radioBtn_deepLearning">
-                  <property name="text">
-                   <string>Deep Learning</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="pbtn_menu_loadImage">
                   <property name="minimumSize">
                    <size>
@@ -169,124 +153,42 @@ border-radius:10px;
                  </widget>
                 </item>
                 <item>
-                 <widget class="QFrame" name="frm_left_menu_stack_style">
-                  <property name="frameShape">
-                   <enum>QFrame::Box</enum>
+                 <widget class="QPushButton" name="pbtn_menu_denoise">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>40</height>
+                   </size>
                   </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Plain</enum>
+                  <property name="text">
+                   <string>Denoise</string>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_3">
-                   <property name="spacing">
-                    <number>0</number>
-                   </property>
-                   <property name="leftMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="topMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="rightMargin">
-                    <number>0</number>
-                   </property>
-                   <property name="bottomMargin">
-                    <number>0</number>
-                   </property>
-                   <item>
-                    <widget class="QStackedWidget" name="stack_wdgt_left_menu_btns">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>160</height>
-                      </size>
-                     </property>
-                     <property name="currentIndex">
-                      <number>0</number>
-                     </property>
-                     <widget class="QWidget" name="page1_image_processing_btns">
-                      <widget class="QFrame" name="frm_image_processing_btns">
-                       <property name="geometry">
-                        <rect>
-                         <x>0</x>
-                         <y>-1</y>
-                         <width>121</width>
-                         <height>161</height>
-                        </rect>
-                       </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_5">
-                        <property name="spacing">
-                         <number>6</number>
-                        </property>
-                        <property name="leftMargin">
-                         <number>0</number>
-                        </property>
-                        <property name="topMargin">
-                         <number>0</number>
-                        </property>
-                        <property name="rightMargin">
-                         <number>0</number>
-                        </property>
-                        <property name="bottomMargin">
-                         <number>1</number>
-                        </property>
-                        <item>
-                         <widget class="QPushButton" name="pbtn_menu_denoise">
-                          <property name="minimumSize">
-                           <size>
-                            <width>60</width>
-                            <height>40</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Denoise</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="pbtn_menu_segment">
-                          <property name="minimumSize">
-                           <size>
-                            <width>60</width>
-                            <height>40</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Segment</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="pbtn_menu_skeletonize">
-                          <property name="minimumSize">
-                           <size>
-                            <width>60</width>
-                            <height>40</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Skeletonize</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </widget>
-                     </widget>
-                     <widget class="QWidget" name="page2_deep_learning_btns">
-                      <widget class="QWidget" name="verticalLayoutWidget">
-                       <property name="geometry">
-                        <rect>
-                         <x>0</x>
-                         <y>0</y>
-                         <width>121</width>
-                         <height>161</height>
-                        </rect>
-                       </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_6"/>
-                      </widget>
-                     </widget>
-                    </widget>
-                   </item>
-                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pbtn_menu_segment">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Segment</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pbtn_menu_skeletonize">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Skeletonize</string>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -541,14 +443,23 @@ border-radius:10px;
                    </sizepolicy>
                   </property>
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="page_report">
+                   <property name="styleSheet">
+                    <string notr="true">#horizontalLayout QPushButton:hover{
+ background-color: #282828;
+}</string>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout">
                       <item>
                        <widget class="QPushButton" name="pbtn_prev_page">
+                        <property name="styleSheet">
+                         <string notr="true">background-color: #282828;
+color:white;</string>
+                        </property>
                         <property name="text">
                          <string>Previous</string>
                         </property>
@@ -569,6 +480,11 @@ border-radius:10px;
                       </item>
                       <item>
                        <widget class="QPushButton" name="pbtn_next_page">
+                        <property name="styleSheet">
+                         <string notr="true">background-color: #282828;
+color:white;
+</string>
+                        </property>
                         <property name="text">
                          <string>Next</string>
                         </property>
@@ -584,6 +500,180 @@ border-radius:10px;
                          <layout class="QGridLayout" name="gridLayout">
                           <item row="0" column="0">
                            <widget class="QGraphicsView" name="pdf_view"/>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_select_report_options">
+                   <layout class="QVBoxLayout" name="verticalLayout">
+                    <item>
+                     <widget class="QWidget" name="wdgt_select_report_options" native="true">
+                      <layout class="QGridLayout" name="gridLayout_2">
+                       <item row="0" column="0">
+                        <widget class="QGroupBox" name="grpbx_report_options">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>400</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>400</height>
+                          </size>
+                         </property>
+                         <property name="title">
+                          <string>Options</string>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_6">
+                          <item>
+                           <widget class="QWidget" name="wdgt_checkBoxes" native="true">
+                            <layout class="QHBoxLayout" name="horizontalLayout_2">
+                             <item>
+                              <widget class="QWidget" name="wdgt_options_right" native="true">
+                               <layout class="QVBoxLayout" name="verticalLayout_5">
+                                <item>
+                                 <widget class="QCheckBox" name="checkBox_report_veinSEP">
+                                  <property name="text">
+                                   <string>vein start/end points</string>
+                                  </property>
+                                  <property name="checked">
+                                   <bool>true</bool>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QCheckBox" name="checkBox_report_vSEPType">
+                                  <property name="text">
+                                   <string>vein start/end point types</string>
+                                  </property>
+                                  <property name="checked">
+                                   <bool>true</bool>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QCheckBox" name="checkBox_report_vCount">
+                                  <property name="text">
+                                   <string>vein count</string>
+                                  </property>
+                                  <property name="checked">
+                                   <bool>true</bool>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QCheckBox" name="checkBox_report_tvLength">
+                                  <property name="text">
+                                   <string>total vein length</string>
+                                  </property>
+                                  <property name="checked">
+                                   <bool>true</bool>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QWidget" name="wdgt_options_left" native="true">
+                               <layout class="QVBoxLayout" name="verticalLayout_3">
+                                <item>
+                                 <widget class="QCheckBox" name="checkBox_report_tpCount">
+                                  <property name="text">
+                                   <string>tip point count</string>
+                                  </property>
+                                  <property name="checked">
+                                   <bool>true</bool>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QCheckBox" name="checkBox_report_evLength">
+                                  <property name="text">
+                                   <string>length of each vein</string>
+                                  </property>
+                                  <property name="checked">
+                                   <bool>true</bool>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QCheckBox" name="checkBox_report_bpCount">
+                                  <property name="text">
+                                   <string>branch points count</string>
+                                  </property>
+                                  <property name="checked">
+                                   <bool>true</bool>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QCheckBox" name="checkBox_report_avLength">
+                                  <property name="text">
+                                   <string>average vein length</string>
+                                  </property>
+                                  <property name="checked">
+                                   <bool>true</bool>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QWidget" name="wdgt_btn" native="true">
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>60</height>
+                             </size>
+                            </property>
+                            <layout class="QHBoxLayout" name="horizontalLayout_3">
+                             <item>
+                              <widget class="QPushButton" name="pbtn_create_pdf">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>60</width>
+                                 <height>40</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>200</width>
+                                 <height>40</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true"> QPushButton{
+ background-color: #FE6E00;
+ border-style: solid;
+ border-width:1px;
+ border-radius:20px;
+ border-color: white;
+
+}
+
+QPushButton:hover{
+ background-color: #FF8303;
+}</string>
+                               </property>
+                               <property name="text">
+                                <string>Create PDF</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
                           </item>
                          </layout>
                         </widget>

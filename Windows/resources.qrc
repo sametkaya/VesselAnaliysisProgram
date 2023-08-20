@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="fsmv">
+    <file>logo/FSMVU-TR-1.png</file>
+  </qresource>
+  <qresource prefix="bv_logo">
+    <file>logo/app_icon.png</file>
+  </qresource>
+</RCC>

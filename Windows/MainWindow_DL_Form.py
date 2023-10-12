@@ -7,7 +7,6 @@ from Windows.MainWindow_DL_Controller import MainWindow_DL_Controller
 from Windows.MainWindow_DL_UI import Ui_MainWindow_DL
 
 
-
 class MainWindow_DL_Form(QMainWindow):
     def __init__(self):
         super(MainWindow_DL_Form, self).__init__()
@@ -35,7 +34,6 @@ class MainWindow_DL_Form(QMainWindow):
         self.ui.pbtn_menu_report.clicked.connect(self.cntlr.pbtn_menu_report_clicked)
         self.ui.pbtn_menu_close.clicked.connect(self.cntlr.pbtn_menu_close_clicked)
 
-
         self.ui.chbx_analyse_showBranchPoints.clicked.connect(self.cntlr.chbx_analyse_showBranchPoints_clicked)
         self.ui.chbx_analyse_showBranchPointMarker.clicked.connect(self.cntlr.chbx_analyse_showBranchPoints_clicked)
         self.ui.chbx_analyse_showBranchPointCenter.clicked.connect(self.cntlr.chbx_analyse_showBranchPoints_clicked)
@@ -54,7 +52,6 @@ class MainWindow_DL_Form(QMainWindow):
         self.ui.chbx_analyse_showBranchPathId.clicked.connect(self.cntlr.chbx_analyse_showBranchPaths_clicked)
 
         self.ui.pbtn_create_pdf.clicked.connect(self.cntlr.pbtn_create_pdf_clicked)
-
         # endregion
         return
 

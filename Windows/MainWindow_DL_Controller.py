@@ -125,7 +125,7 @@ class MainWindow_DL_Controller():
             self.mainWindow.close()
         return
 
-        def show_pdf(self,file_path):
+    def show_pdf(self,file_path):
         self.ui.webEngine.settings().setAttribute(self.ui.webEngine.settings().WebAttribute.PluginsEnabled,
                                                       True)
         self.ui.webEngine.settings().setAttribute(self.ui.webEngine.settings().WebAttribute.PdfViewerEnabled,

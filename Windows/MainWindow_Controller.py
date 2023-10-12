@@ -14,7 +14,6 @@ class MainWindow_Controller():
         self.pdf_document=None
         self.page_index=0
         return
-
         
     def pbtn_menu_loadImage_clicked(self):
         imagePath= ImageOperation.LoadImages(self.ui.wgt_main)
@@ -146,7 +145,7 @@ class MainWindow_Controller():
             self.mainWindow.close()
         return
 
-        def show_pdf(self,file_path):
+    def show_pdf(self,file_path):
         self.ui.webEngine.settings().setAttribute(self.ui.webEngine.settings().WebAttribute.PluginsEnabled,
                                                       True)
         self.ui.webEngine.settings().setAttribute(self.ui.webEngine.settings().WebAttribute.PdfViewerEnabled,

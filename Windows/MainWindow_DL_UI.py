@@ -15,10 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
-    QGraphicsView, QGridLayout, QGroupBox, QHBoxLayout,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QVBoxLayout, QWidget)
+    QGridLayout, QGroupBox, QHBoxLayout, QMainWindow,
+    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow_DL(object):
     def setupUi(self, MainWindow_DL):
@@ -279,51 +280,18 @@ class Ui_MainWindow_DL(object):
         self.wgts_sceneContent.setSizePolicy(sizePolicy)
         self.page_report = QWidget()
         self.page_report.setObjectName(u"page_report")
-        self.verticalLayout_5 = QVBoxLayout(self.page_report)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.hrzntl_page_report = QHBoxLayout()
-        self.hrzntl_page_report.setObjectName(u"hrzntl_page_report")
-        self.pbtn_prev_page = QPushButton(self.page_report)
-        self.pbtn_prev_page.setObjectName(u"pbtn_prev_page")
-        self.pbtn_prev_page.setStyleSheet(u"background-color: #282828;\n"
-"color:white;\n"
-"")
+        self.gridLayout_4 = QGridLayout(self.page_report)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.page_report_layout = QVBoxLayout()
+        self.page_report_layout.setObjectName(u"page_report_layout")
+        self.webEngine = QWebEngineView(self.page_report)
+        self.webEngine.setObjectName(u"webEngine")
+        self.webEngine.setUrl(QUrl(u"about:blank"))
 
-        self.hrzntl_page_report.addWidget(self.pbtn_prev_page)
-
-        self.spcr_page_report = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.hrzntl_page_report.addItem(self.spcr_page_report)
-
-        self.pbtn_next_page = QPushButton(self.page_report)
-        self.pbtn_next_page.setObjectName(u"pbtn_next_page")
-        self.pbtn_next_page.setStyleSheet(u"background-color: #282828;\n"
-"color:white;\n"
-"")
-
-        self.hrzntl_page_report.addWidget(self.pbtn_next_page)
+        self.page_report_layout.addWidget(self.webEngine)
 
 
-        self.verticalLayout_5.addLayout(self.hrzntl_page_report)
-
-        self.page_report_lwdgt = QWidget(self.page_report)
-        self.page_report_lwdgt.setObjectName(u"page_report_lwdgt")
-        self.verticalLayout_8 = QVBoxLayout(self.page_report_lwdgt)
-        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.report_widget = QWidget(self.page_report_lwdgt)
-        self.report_widget.setObjectName(u"report_widget")
-        self.gridLayout_2 = QGridLayout(self.report_widget)
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.pdf_view = QGraphicsView(self.report_widget)
-        self.pdf_view.setObjectName(u"pdf_view")
-
-        self.gridLayout_2.addWidget(self.pdf_view, 0, 0, 1, 1)
-
-
-        self.verticalLayout_8.addWidget(self.report_widget)
-
-
-        self.verticalLayout_5.addWidget(self.page_report_lwdgt)
+        self.gridLayout_4.addLayout(self.page_report_layout, 0, 0, 1, 1)
 
         self.wgts_sceneContent.addWidget(self.page_report)
         self.page_image_processing = QWidget()
@@ -482,7 +450,7 @@ class Ui_MainWindow_DL(object):
 
         self.retranslateUi(MainWindow_DL)
 
-        self.wgts_sceneContent.setCurrentIndex(2)
+        self.wgts_sceneContent.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow_DL)
@@ -514,8 +482,6 @@ class Ui_MainWindow_DL(object):
         self.cmbbx_dl_models.setItemText(3, QCoreApplication.translate("MainWindow_DL", u"Model4", None))
         self.cmbbx_dl_models.setItemText(4, QCoreApplication.translate("MainWindow_DL", u"Model5", None))
 
-        self.pbtn_prev_page.setText(QCoreApplication.translate("MainWindow_DL", u"Previous", None))
-        self.pbtn_next_page.setText(QCoreApplication.translate("MainWindow_DL", u"Next", None))
         self.grpbx_report_options.setTitle(QCoreApplication.translate("MainWindow_DL", u"Options", None))
         self.checkBox_report_veinSEP.setText(QCoreApplication.translate("MainWindow_DL", u"vein start/end points", None))
         self.checkBox_report_vSEPType.setText(QCoreApplication.translate("MainWindow_DL", u"vein start/end point types", None))

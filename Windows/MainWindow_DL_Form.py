@@ -53,12 +53,7 @@ class MainWindow_DL_Form(QMainWindow):
         self.ui.chbx_analyse_showBranchPathLenght.clicked.connect(self.cntlr.chbx_analyse_showBranchPaths_clicked)
         self.ui.chbx_analyse_showBranchPathId.clicked.connect(self.cntlr.chbx_analyse_showBranchPaths_clicked)
 
-        self.ui.scene = QGraphicsScene(self)
-        self.ui.pdf_view.setScene(self.ui.scene)
-
         self.ui.pbtn_create_pdf.clicked.connect(self.cntlr.pbtn_create_pdf_clicked)
-        self.ui.pbtn_next_page.clicked.connect(self.cntlr.next_page)
-        self.ui.pbtn_prev_page.clicked.connect(self.cntlr.previous_page)
 
         # endregion
         return

@@ -249,7 +249,7 @@ def find_branch_pts2(image_skel_uint8):
 
 
 
-    drawed_skel_img_padded = np.zeros(image_skel_padded.shape[:2], dtype=np.int)
+    drawed_skel_img_padded = np.zeros(image_skel_padded.shape[:2], dtype=int)
     #All 8 directions
     #delta = [(-1, -1), (-1, 0), (-1, 1),
     #         (0, -1), (0, 1),

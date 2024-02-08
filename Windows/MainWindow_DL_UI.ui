@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>MainWindow_DL</class>
+ <widget class="QMainWindow" name="MainWindow_DL">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
-    <height>768</height>
+    <width>875</width>
+    <height>818</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Brain Vasculyzer - Image Processing</string>
-  </property>
-  <property name="toolButtonStyle">
-   <enum>Qt::ToolButtonIconOnly</enum>
+   <string>Brain Vasculyzer - Deep Learning</string>
   </property>
   <property name="animated">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="wgt_main">
-   <property name="styleSheet">
-    <string notr="true">#frm_main{
-background-color : #282828;
-}</string>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_3">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -38,12 +30,14 @@ background-color : #282828;
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
+    <item row="0" column="0">
      <widget class="QFrame" name="frm_main">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">#frm_main{
+background-color : #282828;
+}</string>
       </property>
-      <layout class="QVBoxLayout" name="lyt_main">
+      <layout class="QVBoxLayout" name="lyt_main_2">
        <property name="leftMargin">
         <number>15</number>
        </property>
@@ -72,19 +66,27 @@ border-radius:10px;
 }
 
 #frm_left_menu_buttons QPushButton{
- background-color: #FE6E00;
+  background-color: #FE6E00;
  border-style: solid;
  border-width:1px;
  border-radius:20px;
  border-color: white;
-
 }
-
-#frm_left_menu_buttons QPushButton:hover{
+#frm_left_menu_buttons_2 QPushButton:hover{
  background-color: #FF8303;
-}</string>
+}
+#frm_left_menu_buttons QComboBox{
+background-color: #FE6E00;
+ border-style: solid;
+ border-width:1px;
+ border-color: white;
+}
+#frm_left_menu_buttons QComboBox:hover{
+ background-color: #FF8303;
+}
+</string>
          </property>
-         <layout class="QHBoxLayout" name="lyt_middle_content">
+         <layout class="QHBoxLayout" name="lyt_middle_content_2">
           <property name="spacing">
            <number>15</number>
           </property>
@@ -102,7 +104,7 @@ border-radius:10px;
               <height>16777215</height>
              </size>
             </property>
-            <layout class="QVBoxLayout" name="lyt_left_menu">
+            <layout class="QVBoxLayout" name="lyt_left_menu_2">
              <property name="leftMargin">
               <number>6</number>
              </property>
@@ -123,7 +125,7 @@ border-radius:10px;
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QVBoxLayout" name="lyt_left_menu_buttons">
+               <layout class="QVBoxLayout" name="lyt_left_menu_buttons_2">
                 <property name="leftMargin">
                  <number>0</number>
                 </property>
@@ -153,28 +155,35 @@ border-radius:10px;
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pbtn_menu_denoise">
+                 <widget class="QPushButton" name="pbtn_menu_chooseMdl">
                   <property name="minimumSize">
                    <size>
                     <width>60</width>
                     <height>40</height>
                    </size>
                   </property>
-                  <property name="text">
-                   <string>Denoise</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pbtn_menu_segment">
-                  <property name="minimumSize">
+                  <property name="maximumSize">
                    <size>
-                    <width>60</width>
-                    <height>40</height>
+                    <width>16777215</width>
+                    <height>16777215</height>
                    </size>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true"> QPushButton{
+ background-color: #FE6E00;
+ border-style: solid;
+ border-width:1px;
+ border-radius:20px;
+ border-color: white;
+
+}
+
+QPushButton:hover{
+ background-color: #FF8303;
+}</string>
+                  </property>
                   <property name="text">
-                   <string>Segment</string>
+                   <string>Choose Model</string>
                   </property>
                  </widget>
                 </item>
@@ -212,7 +221,7 @@ border-radius:10px;
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
-                  <layout class="QVBoxLayout" name="lyt_left_menu_analyse">
+                  <layout class="QVBoxLayout" name="lyt_left_menu_analyse_2">
                    <property name="leftMargin">
                     <number>0</number>
                    </property>
@@ -230,7 +239,7 @@ border-radius:10px;
                      <property name="title">
                       <string>Branch Points</string>
                      </property>
-                     <layout class="QVBoxLayout" name="lyt_analyse_branchPoint">
+                     <layout class="QVBoxLayout" name="lyt_analyse_branchPoint_2">
                       <property name="leftMargin">
                        <number>1</number>
                       </property>
@@ -281,7 +290,7 @@ border-radius:10px;
                      <property name="title">
                       <string>Tip Points</string>
                      </property>
-                     <layout class="QVBoxLayout" name="lyt_analyse_tipPoint">
+                     <layout class="QVBoxLayout" name="lyt_analyse_tipPoint_2">
                       <property name="leftMargin">
                        <number>1</number>
                       </property>
@@ -332,7 +341,7 @@ border-radius:10px;
                      <property name="title">
                       <string>Branch Paths</string>
                      </property>
-                     <layout class="QVBoxLayout" name="lyt_analyse_branchPath">
+                     <layout class="QVBoxLayout" name="lyt_analyse_branchPath_2">
                       <property name="leftMargin">
                        <number>1</number>
                       </property>
@@ -415,7 +424,7 @@ border-radius:10px;
           </item>
           <item>
            <widget class="QFrame" name="frm_right_scene">
-            <layout class="QVBoxLayout" name="lyt_right_scene">
+            <layout class="QVBoxLayout" name="lyt_right_scene_2">
              <item>
               <widget class="QFrame" name="frm_right_scene_content">
                <property name="sizePolicy">
@@ -433,7 +442,64 @@ border-radius:10px;
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QVBoxLayout" name="lyt_right_scene_content">
+               <layout class="QVBoxLayout" name="lyt_right_scene_content_2">
+                <item>
+                 <widget class="QWidget" name="wdgt_dl_models" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout">
+                   <item>
+                    <widget class="QComboBox" name="cmbbx_dl_models">
+                     <property name="minimumSize">
+                      <size>
+                       <width>140</width>
+                       <height>22</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color:rgb(167, 167, 167)</string>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>UNet</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>ResNet</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Model3</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Model4</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Model5</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="spcr_wdgt_dl_models">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
                 <item>
                  <widget class="QStackedWidget" name="wgts_sceneContent">
                   <property name="sizePolicy">
@@ -446,12 +512,7 @@ border-radius:10px;
                    <number>0</number>
                   </property>
                   <widget class="QWidget" name="page_report">
-                   <property name="styleSheet">
-                    <string notr="true">#horizontalLayout QPushButton:hover{
- background-color: #282828;
-}</string>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout">
+                   <layout class="QGridLayout" name="gridLayout_4">
                     <item row="0" column="0">
                      <layout class="QVBoxLayout" name="page_report_layout">
                       <item>
@@ -467,11 +528,60 @@ border-radius:10px;
                     </item>
                    </layout>
                   </widget>
+                  <widget class="QWidget" name="page_image_processing">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <layout class="QVBoxLayout" name="lyt_image_processing_2">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QFrame" name="frm_image_processing_content">
+                      <property name="styleSheet">
+                       <string notr="true">background-color:#3A3A3A;</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="lyt_image_processing_content_2">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
                   <widget class="QWidget" name="page_select_report_options">
                    <layout class="QVBoxLayout" name="verticalLayout">
                     <item>
                      <widget class="QWidget" name="wdgt_select_report_options" native="true">
-                      <layout class="QGridLayout" name="gridLayout_2">
+                      <layout class="QGridLayout" name="gridLayout">
                        <item row="0" column="0">
                         <widget class="QGroupBox" name="grpbx_report_options">
                          <property name="minimumSize">
@@ -490,12 +600,24 @@ border-radius:10px;
                           <string>Options</string>
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_6">
+                          <property name="leftMargin">
+                           <number>1</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>6</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>1</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>6</number>
+                          </property>
                           <item>
                            <widget class="QWidget" name="wdgt_checkBoxes" native="true">
                             <layout class="QHBoxLayout" name="horizontalLayout_2">
                              <item>
                               <widget class="QWidget" name="wdgt_options_right" native="true">
-                               <layout class="QVBoxLayout" name="verticalLayout_5">
+                               <layout class="QVBoxLayout" name="verticalLayout_4">
                                 <item>
                                  <widget class="QCheckBox" name="checkBox_report_veinSEP">
                                   <property name="text">
@@ -641,55 +763,6 @@ QPushButton:hover{
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="page_image_processing">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <layout class="QVBoxLayout" name="lyt_image_processing">
-                    <property name="leftMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>0</number>
-                    </property>
-                    <item>
-                     <widget class="QFrame" name="frm_image_processing_content">
-                      <property name="styleSheet">
-                       <string notr="true">background-color:#3A3A3A;</string>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QVBoxLayout" name="lyt_image_processing_content">
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                      </layout>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
                  </widget>
                 </item>
                </layout>
@@ -714,8 +787,6 @@ QPushButton:hover{
    <header location="global">QtWebEngineWidgets/QWebEngineView</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../Resources/resoruces.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

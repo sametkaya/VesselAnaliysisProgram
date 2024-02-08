@@ -1,14 +1,9 @@
-from PySide6.QtCore import QPoint
-from PySide6.QtGui import QImage, Qt
+from PySide6.QtCore import QUrl
 from PySide6.QtWidgets import QMessageBox, QMainWindow
 
-from GraphicItems.CustomRectItem import CustomRectItem
-from GraphicItems.VAP_Point_Graph import VAP_Point_Graph
-from GraphicItems.VAP_Vein_Graph import VAP_Vein_Graph
 from System import ImageProcessing
 from System.ImageOperation import ImageOperation
-from System.ImageProcessing import GetImageFormats
-from Windows.Custom.VAP_QGraphicsView import VAP_QGraphicsView
+
 from Windows.MainWindow_UI import Ui_MainWindow
 
 
@@ -19,19 +14,12 @@ class MainWindow_Controller():
         self.pdf_document=None
         self.page_index=0
         return
-
-    def radioBtn_imgPrcssng_clicked(self):
-        self.ui.stack_wdgt_left_menu_btns.setCurrentIndex(0)
-        return
-
-    def radioBtn_deepLearning_clicked(self):
-        self.ui.stack_wdgt_left_menu_btns.setCurrentIndex(1)
-        return
         
     def pbtn_menu_loadImage_clicked(self):
         imagePath= ImageOperation.LoadImages(self.ui.wgt_main)
         image_raw, image_gray = ImageProcessing.GetImageFormats(imagePath)
         self.ui.gv_image.scene.SetImage(imagePath, image_raw, image_gray)
+        self.ui.wgts_sceneContent.setCurrentWidget(self.ui.page_image_processing)
 
         self.ui.gv_image.scene.Update_Branch_Points(False, False, False)
         self.ui.gv_image.scene.Update_Tip_Points(False, False, False)
@@ -115,13 +103,39 @@ class MainWindow_Controller():
         showLenght = self.ui.chbx_analyse_showBranchPathLenght.isChecked()
 
         self.ui.gv_image.scene.Update_Branch_Paths(isVisible, showId, showLenght)
-
-
+        
 
     def pbtn_menu_report_clicked(self):
-        MySecondWindow = SecondWindow_Form(self)
-        MySecondWindow.show()
+        self.ui.wgts_sceneContent.setCurrentIndex(1)
+        return
 
+    def pbtn_create_pdf_clicked(self):
+        branchPointsCount = self.ui.checkBox_report_bpCount.isChecked()
+        tipPointsCount = self.ui.checkBox_report_tpCount.isChecked()
+        veinCount = self.ui.checkBox_report_vCount.isChecked()
+        veinStartEndPoints = self.ui.checkBox_report_veinSEP.isChecked()
+        totalVeinLength = self.ui.checkBox_report_tvLength.isChecked()
+        averageVeinLength = self.ui.checkBox_report_avLength.isChecked()
+        eachVeinLength = self.ui.checkBox_report_evLength.isChecked()
+        veinStartEndPointsType = self.ui.checkBox_report_vSEPType.isChecked()
+
+        informationDict = {}
+        informationDict["vaf(%)"] = True
+        informationDict["id"] = True
+        informationDict["branch points count"] = branchPointsCount
+        informationDict["tip point count"] = tipPointsCount
+        informationDict["vein count"] = veinCount
+        informationDict["total vein length"] = totalVeinLength
+        informationDict["average vein length"] = averageVeinLength
+        informationDict["p1.x, p1.y"] = veinStartEndPoints
+        informationDict["p2.x, p2.y"] = veinStartEndPoints
+        informationDict["length"] = eachVeinLength
+        informationDict["p1_type"] = veinStartEndPointsType
+        informationDict["p2_type"] = veinStartEndPointsType
+
+        file_path = ImageOperation.SaveInfos(self.ui.gv_image.scene.vap_image, informationDict)
+        self.ui.wgts_sceneContent.setCurrentWidget(self.ui.page_report)
+        self.show_pdf(file_path)
         return
 
     def pbtn_menu_close_clicked(self):
@@ -131,41 +145,10 @@ class MainWindow_Controller():
             self.mainWindow.close()
         return
 
-    def load_pdf(self,file_name):
-        if file_name:
-            self.pdf_document = fitz.open(file_name)
-            self.show_page()
-
-    def show_page(self):
-        if not self.pdf_document:
-            return
-
-        page = self.pdf_document.load_page(self.page_index)
-        image = page.get_pixmap()
-        qt_image = QImage(image.samples, image.width, image.height, image.stride, QImage.Format_RGB888)
-        pixmap = QPixmap.fromImage(qt_image)
-
-        # Calculate the scale factor to fit the page to the view
-        scale_factor = min(self.ui.pdf_view.width() / pixmap.width(), self.ui.pdf_view.height() / pixmap.height()) * 1.5
-        scaled_pixmap = pixmap.scaled(pixmap.width() * scale_factor, pixmap.height() * scale_factor, Qt.KeepAspectRatio)
-
-        # Calculate the center position to display the page in the view
-        center_x = (self.ui.pdf_view.width() - scaled_pixmap.width()) / 2
-        center_y = (self.ui.pdf_view.height() - scaled_pixmap.height()) / 2
-
-        top_left_x = center_x if center_x > 0 else 0
-        top_left_y = center_y if center_y > 0 else 0
-
-        self.ui.scene.clear()
-        self.ui.scene.addPixmap(scaled_pixmap)
-        self.ui.pdf_view.setSceneRect(top_left_x, top_left_y, scaled_pixmap.width(), scaled_pixmap.height())
-
-    def previous_page(self):
-        if self.page_index > 0:
-            self.page_index -= 1
-            self.show_page()
-
-    def next_page(self):
-        if self.pdf_document and self.page_index < len(self.pdf_document) - 1:
-            self.page_index += 1
-            self.show_page()
+    def show_pdf(self,file_path):
+        self.ui.webEngine.settings().setAttribute(self.ui.webEngine.settings().WebAttribute.PluginsEnabled,
+                                                      True)
+        self.ui.webEngine.settings().setAttribute(self.ui.webEngine.settings().WebAttribute.PdfViewerEnabled,
+                                                      True)
+        self.ui.webEngine.setUrl(QUrl("file:///" + file_path.replace('\\', '/')))
+        return
